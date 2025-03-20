@@ -8,5 +8,5 @@ class reservation extends Model
 {
     protected $fillable = [
         'resevation'
-    ]
+    ];
 }

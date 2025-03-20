@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Siege extends Model
 {
-    //
+    protected $fillable = [
+        'status',
+        'siege_number'
+    ];
 }
