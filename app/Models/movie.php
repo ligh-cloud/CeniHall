@@ -15,4 +15,8 @@ class movie extends Model
         'trailer',
         'type'
     ];
+
+    public static function find($id)
+    {
+    }
 }
