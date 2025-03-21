@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->time('duration');
             $table->integer('min_age');
-            $table->string('trailler')->nullable();
+            $table->string('trailer')->nullable();
             $table->string('movie_type')->nullable();
             $table->timestamps();
         });

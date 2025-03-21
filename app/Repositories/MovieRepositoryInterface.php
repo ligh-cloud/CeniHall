@@ -10,5 +10,5 @@ interface MovieRepositoryInterface
     public function create(array $data);
     public function update(Movie $movie, array $data);
     public function delete(Movie $movie);
-
+    public function getAll();
 }

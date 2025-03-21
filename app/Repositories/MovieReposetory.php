@@ -26,5 +26,9 @@ class MovieReposetory implements MovieRepositoryInterface {
     {
         return $movie->delete();
     }
+    public function getAll()
+    {
+        return Movie::all();
+    }
 
 }

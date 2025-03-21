@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Services;
 use App\Models\movie;
 use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
@@ -15,20 +16,21 @@ class MovieService
     {
         $this->movierepository = $movieRepository;
     }
-    public function addMovie(Movie $movie , $data)
+    public function addMovie( $data)
     {
         $validate = Validator::make($data , [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'duration' => 'required|integer|min:1',
-            'release_date' => 'required|date',
-            'genre' => 'required|string|max:100',
+            'duration' => 'required|date_format:H:i:s',
+
+            'movie_type' => 'required|string|max:100',
             'director' => 'required|string|max:255',
-            'poster_url' => 'nullable|string|url',
-            'trailer_url' => 'nullable|string|url',
+            'image' => 'nullable|string|url',
+            'trailer' => 'nullable|string|url',
+            'min_age' => 'integer|min:12|max:100'
         ]);
         if($validate->fails()){
-            throw new \Nette\Schema\ValidationException($validate);
+            throw ValidationException::withMessages($validate->errors()->toArray());
         }
         return $this->movierepository->create($data);
     }

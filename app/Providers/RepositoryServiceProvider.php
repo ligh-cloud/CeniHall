@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\MovieReposetory;
+use App\Repositories\MovieRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -14,6 +17,13 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(MovieRepositoryInterface::class , MovieReposetory::class);
+//        $this->app->bind(\App\Repositories\PaymentRepositoryInterface::class, \App\Repositories\PaymentRepository::class);
+//        $this->app->bind(\App\Repositories\ReservationRepositoryInterface::class, \App\Repositories\ReservationRepository::class);
+//        $this->app->bind(\App\Repositories\SalleRepositoryInterface::class, \App\Repositories\SalleRepository::class);
+//        $this->app->bind(\App\Repositories\SeanceRepositoryInterface::class, \App\Repositories\SeanceRepository::class);
+//        $this->app->bind(\App\Repositories\SiegeRepositoryInterface::class, \App\Repositories\SiegeRepository::class);
+//        $this->app->bind(\App\Repositories\TicketRepositoryInterface::class, \App\Repositories\TicketRepository::class);
     }
 
     /**

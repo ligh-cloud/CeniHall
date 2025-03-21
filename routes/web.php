@@ -8,15 +8,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// For the register route without CSRF protection
-Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register'])
+Route::middleware('api')->group(function (){
+    Route::get('/movies' , [\App\Http\Controllers\MovieController::class , 'showAllMovies']);
+
+    Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+    Route::put('/movie/{movie}' , [\App\Http\Controllers\MovieController::class , 'update']);
+});
+
+Route::post('/addMovie', [\App\Http\Controllers\MovieController::class, 'store'])
     ->middleware(\Illuminate\Routing\Middleware\SubstituteBindings::class)
     ->withoutMiddleware(VerifyCsrfToken::class);
-
-// For API routes group
-Route::middleware(['throttle:api'])
-    ->prefix('api')
-    ->group(function () {
-        // Your API routes here
-        // These routes will automatically bypass CSRF verification
-    });
