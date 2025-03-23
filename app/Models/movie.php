@@ -19,4 +19,7 @@ class movie extends Model
     public static function find($id)
     {
     }
+    public function seance(){
+        return $this->belongsToMany(seance::class);
+    }
 }

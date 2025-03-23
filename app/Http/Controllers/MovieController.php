@@ -39,8 +39,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        // This method typically returns a view for web applications
-        // For an API, this might not be needed
+
         return response()->json([
             'status' => 'success',
             'message' => 'Use POST to /movies to create a new movie'
@@ -106,6 +105,7 @@ class MovieController extends Controller
     public function update(Request $request, Movie $movie)
     {
         try {
+
             $updated = $this->movieService->updateMovie($movie, $request->all());
 
             if (!$updated) {

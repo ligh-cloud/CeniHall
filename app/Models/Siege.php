@@ -10,4 +10,13 @@ class Siege extends Model
         'status',
         'siege_number'
     ];
+
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
+    public function salle(){
+        return $this->belongsTo(Salle::class);
+    }
 }

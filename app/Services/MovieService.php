@@ -50,7 +50,7 @@ class MovieService
         $validator = Validator::make($data, [
             'title' => 'string|max:255',
             'description' => 'string',
-            'duration' => 'integer|min:1',
+            'duration' => 'required|date_format:H:i:s',
             'release_date' => 'date',
             'genre' => 'string|max:100',
             'director' => 'string|max:255',

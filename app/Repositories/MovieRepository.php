@@ -3,7 +3,7 @@
 namespace App\Repositories;
 use App\Models\movie;
 
-class MovieReposetory implements MovieRepositoryInterface {
+class MovieRepository implements MovieRepositoryInterface {
     public function all(){
         return response()->json(\App\Models\movie::all());
     }
