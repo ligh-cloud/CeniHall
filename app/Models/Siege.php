@@ -8,7 +8,8 @@ class Siege extends Model
 {
     protected $fillable = [
         'status',
-        'siege_number'
+        'siege_number',
+        'salle_id'
     ];
 
 

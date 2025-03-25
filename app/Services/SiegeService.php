@@ -43,7 +43,7 @@ class SiegeService
     {
         $validatedData = $request->validate([
             'siege_number' => 'required|integer|max:100',
-            'status' => 'required|string|in:available,reserved',
+
             'salle_id' => 'required|exists:salles,id'
         ]);
 
@@ -62,7 +62,7 @@ class SiegeService
 
         $validatedData = validator($data, [
             'siege_number' => 'sometimes|integer|max:100',
-            'status' => 'sometimes|string|in:available,reserved',
+
             'salle_id' => 'sometimes|exists:salles,id'
         ])->validate();
 

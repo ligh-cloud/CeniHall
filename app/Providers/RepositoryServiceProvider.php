@@ -7,7 +7,7 @@ use App\Repositories\MovieRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
-
+use App\Repositories\SiegeRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -22,7 +22,7 @@ class RepositoryServiceProvider extends ServiceProvider
 //        $this->app->bind(\App\Repositories\ReservationRepositoryInterface::class, \App\Repositories\ReservationRepository::class);
         $this->app->bind(\App\Repositories\SalleRepositoryInterface::class, \App\Repositories\SalleRepository::class);
         $this->app->bind(\App\Repositories\SeanceRepositoryInterface::class, \App\Repositories\SeanceRepository::class);
-//        $this->app->bind(\App\Repositories\SiegeRepositoryInterface::class, \App\Repositories\SiegeRepository::class);
+        $this->app->bind(\App\Repositories\SiegeRepositoryInterface::class, SiegeRepository::class);
 //        $this->app->bind(\App\Repositories\TicketRepositoryInterface::class, \App\Repositories\TicketRepository::class);
     }
 

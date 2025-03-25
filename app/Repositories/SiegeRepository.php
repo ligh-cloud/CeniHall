@@ -1,5 +1,5 @@
 <?php
-namespace App\Services;
+namespace App\Repositories;
 use App\Models\movie;
 use App\Models\Siege;
 use App\Models\User;
@@ -11,12 +11,9 @@ use App\Repositories\MovieRepositoryInterface;
 use Illuminate\Http\Request;
 
 
-class SiegeService{
+class SiegeRepository implements SiegeRepositoryInterface{
     protected $siegeReposetory;
-    public function __construct (SiegeRepositoryInterface $siegeRepository)
-    {
-        $this->siegeReposetory = $siegeRepository;
-    }
+
 
     public function addSiege($data){
         $validatedData = $data->validate([

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Seance extends Model
 {
     protected $fillable = [
+        'salle_id',
+        'movie_id',
         'start_time',
         'type',
         'language',
