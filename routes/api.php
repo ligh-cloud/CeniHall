@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\SalleController;
+use App\Http\Controllers\SeanceController;
 use App\Http\Controllers\SiegeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +26,7 @@ Route::get('/', function () {
 
 
 
-Route::post('/addMovie', [\App\Http\Controllers\MovieController::class, 'store']);
+Route::post('/movie', [\App\Http\Controllers\MovieController::class, 'store']);
 Route::put('/movie/{movie}', [\App\Http\Controllers\MovieController::class, 'update']);
 
 
@@ -51,3 +53,19 @@ Route::prefix('sieges')->group(function () {
     Route::patch('/{id}', [SiegeController::class, 'update']);
     Route::delete('/{id}', [SiegeController::class, 'destroy']);
 });
+
+Route::prefix('salles')->group(function () {
+    Route::get('/', [SalleController::class, 'index']);
+    Route::get('{id}', [SalleController::class, 'show']);
+    Route::post('/', [SalleController::class, 'store']);
+    Route::put('{id}', [SalleController::class, 'update']);
+    Route::delete('{id}', [SalleController::class, 'destroy']);
+});
+Route::prefix('seances')->group(function () {
+    Route::get('/', [SeanceController::class, 'index']);
+    Route::post('/', [SeanceController::class, 'store']);
+    Route::get('/{id}', [SeanceController::class, 'show']);
+    Route::put('/{seance}', [SeanceController::class, 'update']);
+    Route::delete('/{seance}', [SeanceController::class, 'destroy']);
+});
+

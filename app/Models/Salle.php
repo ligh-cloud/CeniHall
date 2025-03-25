@@ -10,4 +10,8 @@ class Salle extends Model
         'name',
         'type'
     ];
+
+    public function siege(){
+        return $this->hasMany(Siege::class);
+    }
 }

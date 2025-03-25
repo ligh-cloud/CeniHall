@@ -25,7 +25,7 @@ class MovieService
 
             'movie_type' => 'required|string|max:100',
             'director' => 'required|string|max:255',
-            'image' => 'nullable|string|url',
+            'image' => 'nullable|string',
             'trailer' => 'nullable|string|url',
             'min_age' => 'integer|min:12|max:100'
         ]);

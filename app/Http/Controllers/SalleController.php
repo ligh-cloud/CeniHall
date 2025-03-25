@@ -2,64 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Salle;
 use Illuminate\Http\Request;
+use App\Services\SalleService;
+use App\Models\Salle;
 
 class SalleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $salleService;
+
+    public function __construct(SalleService $salleService)
+    {
+        $this->salleService = $salleService;
+    }
+
     public function index()
     {
-        //
+        $salles = $this->salleService->getAllSalles();
+        return response()->json($salles);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        $salle = $this->salleService->getSalleById($id);
+        if (!$salle) {
+            return response()->json(['message' => 'Salle not found.'], 404);
+        }
+        return response()->json($salle);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+
+        ]);
+
+        $salle = $this->salleService->addSalle($validated);
+        return response()->json($salle, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Salle $salle)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'capacity' => 'nullable|integer',
+        ]);
+
+        try {
+            $salle = $this->salleService->updateSalle($id, $validated);
+            return response()->json($salle);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Salle $salle)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Salle $salle)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Salle $salle)
-    {
-        //
+        try {
+            $this->salleService->deleteSalle($id);
+            return response()->json(['message' => 'Salle deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
+        }
     }
 }

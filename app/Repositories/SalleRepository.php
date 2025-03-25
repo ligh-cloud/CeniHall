@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Repositories;
 
 use App\Models\Salle;
 use App\Repositories\SalleRepositoryInterface;
+
 class SalleRepository implements SalleRepositoryInterface
 {
     /**
@@ -32,18 +32,18 @@ class SalleRepository implements SalleRepositoryInterface
     }
 
     /**
-     * Update an existing salle.
-     */
-    public function update(Salle $salle, array $data)
-    {
-        return $salle->update($data);
-    }
-
-    /**
      * Delete a salle.
      */
     public function delete(Salle $salle)
     {
         return $salle->delete();
+    }
+
+    /**
+     * Update an existing salle.
+     */
+    public function update(Salle $salle, array $data)
+    {
+        return $salle->update($data);
     }
 }

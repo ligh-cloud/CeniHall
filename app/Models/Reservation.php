@@ -4,9 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class reservation extends Model
+class Reservation extends Model
 {
     protected $fillable = [
-        'resevation'
+        'user_id',
+        'seance_id',
+        'siege_id'
     ];
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
 }
