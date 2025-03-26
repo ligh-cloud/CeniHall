@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\SeanceController;
 use App\Http\Controllers\SiegeController;
@@ -68,4 +69,14 @@ Route::prefix('seances')->group(function () {
     Route::put('/{seance}', [SeanceController::class, 'update']);
     Route::delete('/{seance}', [SeanceController::class, 'destroy']);
 });
+
+Route::prefix('reservations')->group(function (){
+
+        Route::get('/', [ReservationController::class, 'index']);
+        Route::get('{id}', [ReservationController::class, 'show']);
+        Route::post('/', [ReservationController::class, 'store']);
+        Route::put('{id}', [ReservationController::class, 'update']);
+        Route::delete('{id}', [ReservationController::class, 'destroy']);
+    });
+
 
