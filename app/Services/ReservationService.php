@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Jobs\DeleteUnpaidReservation;
 use App\Repositories\ReservationRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -42,6 +43,7 @@ class ReservationService
             'seance_id' => 'required|exists:seances,id',
             'status' => 'required|boolean',
         ]);
+
 
         return $this->reservationRepository->create($data);
     }

@@ -15,6 +15,16 @@ class Reservation extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function siege()
+    {
+        return $this->belongsTo(Siege::class);
+    }
+
+    public function seance()
+    {
+        return $this->belongsTo(Seance::class);
     }
 }

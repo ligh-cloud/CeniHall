@@ -21,7 +21,11 @@ class ReservationRepository implements ReservationRepositoryInterface
      */
     public function find($id)
     {
-        return Reservation::with(['user', 'siege', 'seance'])->findOrFail($id);
+        $reservation = Reservation::with(['user', 'siege', 'seance'])->find($id);
+
+
+
+        return $reservation;
     }
 
     /**
@@ -45,6 +49,6 @@ class ReservationRepository implements ReservationRepositoryInterface
      */
     public function update(Reservation $reservation, array $data)
     {
-        return $reservation::update($data);
+        return $reservation->update($data);
     }
 }

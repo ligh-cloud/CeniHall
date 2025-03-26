@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\DeleteUnpaidReservation;
 use App\Services\ReservationService;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,11 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $reservation = $this->reservationService->createReservation($request);
+            $reservation = $this->reservationService->createReservation($request);
+        DeleteUnpaidReservation::dispatch($reservation->id)
+            ->onQueue('delete_reservation')
+            ->delay(now()->addMinute(1));
+
         return response()->json(['message' => 'Reservation created successfully', 'reservation' => $reservation], 201);
     }
 
