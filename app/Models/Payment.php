@@ -8,9 +8,11 @@ class Payment extends Model
 {
     protected $fillable = [
         'amount',
-        'payment_method',
+        'reservation_id',
+        'user_id'
     ];
-    public function reservation(){
-        $this->hasOne(Reservation::class);
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
     }
 }

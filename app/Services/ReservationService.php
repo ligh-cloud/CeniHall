@@ -41,7 +41,7 @@ class ReservationService
             'user_id' => 'required|exists:users,id',
             'siege_id' => 'required|exists:salles,id',
             'seance_id' => 'required|exists:seances,id',
-            'status' => 'required|boolean',
+
         ]);
 
 

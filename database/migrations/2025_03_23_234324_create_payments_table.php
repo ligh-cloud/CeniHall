@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->integer('amount');
-            $table->string('payement_method');
+            $table->string('payement_method')->nullable();
             $table->foreignId('reservation_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

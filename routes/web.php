@@ -11,7 +11,7 @@ Route::get('/', function () {
 Route::middleware('api')->group(function (){
     Route::get('/movies' , [\App\Http\Controllers\MovieController::class , 'showAllMovies']);
 
-    Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+
 
 });
 

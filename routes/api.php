@@ -21,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
     Route::get('/movies', [\App\Http\Controllers\MovieController::class, 'showAllMovies']);
 
     Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
@@ -78,5 +79,14 @@ Route::prefix('reservations')->group(function (){
         Route::put('{id}', [ReservationController::class, 'update']);
         Route::delete('{id}', [ReservationController::class, 'destroy']);
     });
+
+use App\Http\Controllers\PayPalController;
+Route::prefix('paypal')->group(function () {
+    Route::post('/payment', [PayPalController::class, 'createPayment']);
+    Route::post('/capture', [PayPalController::class, 'capturePayment']);
+    Route::get('/payments', [PayPalController::class, 'index']);
+    Route::get('/payment/{id}', [PayPalController::class, 'show']);
+    Route::delete('/payment/{id}', [PayPalController::class, 'destroy']);
+});
 
 
