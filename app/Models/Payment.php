@@ -10,4 +10,7 @@ class Payment extends Model
         'amount',
         'payment_method',
     ];
+    public function reservation(){
+        $this->hasOne(Reservation::class);
+    }
 }
