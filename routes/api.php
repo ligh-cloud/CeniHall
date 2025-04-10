@@ -33,9 +33,10 @@ Route::put('/movie/{movie}', [\App\Http\Controllers\MovieController::class, 'upd
 
 
 Route::prefix('movie')->group(function (){
-    Route::get('/', [MovieController::class, 'index']);
+
     Route::get('/all', [MovieController::class, 'showAllMovies']);
     Route::post('/', [MovieController::class, 'store']);
+    Route::get('/', [MovieController::class, 'index']);
     Route::get('/{movie}', [MovieController::class, 'show']);
     Route::put('/{movie}', [MovieController::class, 'update']);
     Route::patch('/{movie}', [MovieController::class, 'update']);

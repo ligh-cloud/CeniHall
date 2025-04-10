@@ -52,7 +52,7 @@ class PaypalController extends Controller
         $payment = $this->paymentService->capturePayPalOrder($request->orderID);
 
         // Debugging: Check the response from PayPal
-        dd($payment);
+
 
         // Check if the payment was successful
         if (isset($payment['status']) && $payment['status'] === 'COMPLETED') {
