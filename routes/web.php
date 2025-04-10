@@ -15,4 +15,7 @@ Route::get('/' , function (){
 Route::get('/post' , function (){
     return view('posts');
 });
+Route::get('/salle' , function (){
+    return view('salle');
+});
 
