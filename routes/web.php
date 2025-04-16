@@ -25,3 +25,7 @@ Route::get("/test" , function (){
 Route::get("/seances" , function (){
     return view('sceance');
 });
+
+Route::get("/reservations" , function (){
+    return view('reservation');
+});

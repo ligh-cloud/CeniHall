@@ -27,4 +27,6 @@ class Reservation extends Model
     {
         return $this->belongsTo(Seance::class);
     }
+
+
 }

@@ -11,7 +11,14 @@ class Salle extends Model
         'type'
     ];
 
-    public function siege(){
+
+    public function seances()
+    {
+        return $this->hasMany(Seance::class);
+    }
+
+    public function sieges()
+    {
         return $this->hasMany(Siege::class);
     }
 }

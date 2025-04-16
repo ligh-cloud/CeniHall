@@ -17,7 +17,9 @@ class Siege extends Model
     {
         return $this->belongsTo(Reservation::class);
     }
-    public function salle(){
+
+    public function salle()
+    {
         return $this->belongsTo(Salle::class);
     }
 }

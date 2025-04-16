@@ -29,24 +29,50 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-            $reservation = $this->reservationService->createReservation($request);
-        DeleteUnpaidReservation::dispatch($reservation->id)
-            ->onQueue('delete_reservation')
-            ->delay(now()->addMinute(1));
+        try {
 
-        return response()->json(['message' => 'Reservation created successfully', 'reservation' => $reservation], 201);
+            $reservation = $this->reservationService->createReservation($request);
+
+            // Dispatch job to delete unpaid reservation
+            DeleteUnpaidReservation::dispatch($reservation['reservation']->id)
+                ->onQueue('delete_reservation')
+                ->delay(now()->addMinute(1));
+
+
+            return response()->json([
+                'message' => 'Reservation created successfully',
+                'reservation' => $reservation['reservation'],
+                'movie_name' => $reservation['movie_name'],
+                'salle_name' => $reservation['salle_name'],
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to create reservation', 'error' => $e->getMessage()], 400);
+        }
     }
+
 
     /**
      * Display the specified reservation.
      */
     public function show($id)
     {
+        // Get the reservation by its ID
         $reservation = $this->reservationService->getReservationById($id);
         if (!$reservation) {
             return response()->json(['message' => 'Reservation not found'], 404);
         }
-        return response()->json($reservation);
+
+
+        $seance = $reservation->seance;
+        $movie = $seance->movie;
+        $salle = $seance->salle;
+
+
+        return response()->json([
+            'reservation' => $reservation,
+            'movie_name' => $movie ? $movie->name : null,
+            'salle_name' => $salle ? $salle->name : null,
+        ]);
     }
 
     /**

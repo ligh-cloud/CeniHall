@@ -37,15 +37,27 @@ class ReservationService
      */
     public function createReservation(Request $request)
     {
+        // Validate the input data
         $data = $request->validate([
             'user_id' => 'required|exists:users,id',
-            'siege_id' => 'required|exists:salles,id',
+            'siege_id' => 'required|exists:sieges,id', // changed from 'salles' to 'sieges'
             'seance_id' => 'required|exists:seances,id',
-
         ]);
 
+        // Create the reservation
+        $reservation = $this->reservationRepository->create($data);
 
-        return $this->reservationRepository->create($data);
+        // Get related seance, movie, and salle information
+        $seance = $reservation->seance;
+        $movie = $seance->movie; // Retrieve the movie related to the seance
+        $salle = $seance->salle; // Retrieve the salle related to the seance
+
+        // Return reservation with movie and salle names
+        return [
+            'reservation' => $reservation,
+            'movie_name' => $movie ? $movie->name : null,
+            'salle_name' => $salle ? $salle->name : null,
+        ];
     }
 
     /**
