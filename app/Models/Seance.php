@@ -13,14 +13,13 @@ class Seance extends Model
         'type',
         'language',
     ];
-    public function salle()
-    {
-        $this->hasOne(Salle::class);
-
-    }
     public function movie()
     {
-        $this->hasOne(Movie::class);
+        return $this->belongsTo(Movie::class);
+    }
 
+    public function salle()
+    {
+        return $this->belongsTo(Salle::class);
     }
 }

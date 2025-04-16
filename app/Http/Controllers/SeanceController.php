@@ -30,7 +30,7 @@ class SeanceController extends Controller
 
     /**
      * Store a newly created seance.
-     */
+     p*/
     public function store(Request $request)
     {
         try {

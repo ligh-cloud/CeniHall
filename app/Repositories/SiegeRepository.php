@@ -23,10 +23,10 @@ class SiegeRepository implements SiegeRepositoryInterface{
         return $this->siegeReposetory->create($data);
     }
     public function all(){
-        return Siege::with('salle')->get();
+        return Siege::with(['salle' , 'movie'])->get();
     }
     public function find($id){
-        return Siege::with('salle')->findOrFail($id);
+        return Siege::with('salle' , 'movie' )->findOrFail($id);
     }
 
     public function create(array $data)

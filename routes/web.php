@@ -22,3 +22,6 @@ Route::get('/salle' , function (){
 Route::get("/test" , function (){
     return view('test');
 });
+Route::get("/seances" , function (){
+    return view('sceance');
+});

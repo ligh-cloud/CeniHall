@@ -12,7 +12,7 @@ class SeanceRepository implements SeanceRepositoryInterface
      */
     public function all()
     {
-        return Seance::all();
+        return Seance::with(['movie', 'salle'])->get();
     }
 
     /**
@@ -20,7 +20,7 @@ class SeanceRepository implements SeanceRepositoryInterface
      */
     public function find($id)
     {
-        return Seance::find($id);
+        return Seance::with(['movie', 'salle'])->find($id);
     }
 
     /**
