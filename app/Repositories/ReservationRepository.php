@@ -13,7 +13,13 @@ class ReservationRepository implements ReservationRepositoryInterface
      */
     public function all()
     {
-        return Reservation::with(['user', 'siege', 'seance'])->get();
+        return Reservation::with([
+            'user',
+            'siege',
+            'seance.movie',
+            'seance.salle',
+
+        ])->get();
     }
 
     /**

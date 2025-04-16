@@ -55,7 +55,7 @@ class ReservationService
         // Return reservation with movie and salle names
         return [
             'reservation' => $reservation,
-            'movie_name' => $movie ? $movie->name : null,
+            'movie_name' => $movie ? $movie->title : null,
             'salle_name' => $salle ? $salle->name : null,
         ];
     }
