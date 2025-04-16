@@ -21,6 +21,35 @@
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+    <a class="navbar-brand" href="/">MyApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/post">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/salle">Salle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/test">Test</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/seances">Séances</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/reservations">Réservations</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <h1>Movies Dashboard</h1>
 <div id="alert-container"></div>
